@@ -16,6 +16,21 @@ module.exports = {
             use: ['babel-loader'],
             exclude: /node_modules/
         },{
+            test:  /\.(gif|png|jpg|svg)$/i,
+            use: [{
+                loader:'url-loader',
+                options: {
+                    limit: 2048,
+                    name: 'img/[name].[hash:8].[ext]'
+                }
+            }]
+        },{
+            test: /\.css$/,
+            use: [
+                'css-loader',
+                'style-loader',
+            ]
+        },{
             test: /\.vue$/,
             //[vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.
             use: 'vue-loader',
