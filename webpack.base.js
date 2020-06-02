@@ -27,9 +27,10 @@ module.exports = {
         },{
             test: /\.css$/,
             use: [
-                'css-loader',
                 'style-loader',
-            ]
+                'css-loader',
+            ],
+            exclude: /node_modules/
         },{
             test: /\.vue$/,
             //[vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.
