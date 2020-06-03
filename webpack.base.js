@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'app.js'
+        filename: '[name].[hash:8].js'
     },
     module: {
         rules: [{
@@ -25,13 +25,6 @@ module.exports = {
                     name: 'img/[name].[hash:8].[ext]'
                 }
             }]
-        },{
-            test: /\.css$/,
-            use: [
-                'style-loader',
-                'css-loader',
-            ],
-            exclude: /node_modules/
         },{
             test: /\.vue$/,
             //[vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.
@@ -52,5 +45,10 @@ module.exports = {
 
         new VueLoaderPlugin(),
 
-    ]
+    ],
+    resolve: {
+        alias: {
+            vue$: "vue/dist/vue.esm.js",
+        },
+    },
 }

@@ -11,9 +11,10 @@ export default {
     name: 'app'
 }
 </script>
-<style>
+<style lang="less">
 .box{
-    background: green
+    background: blue;
+    display: flex;
 }
 </style>
 
