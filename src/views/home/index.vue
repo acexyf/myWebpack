@@ -4,8 +4,12 @@
     </div>
 </template>
 <script>
+import { join } from 'lodash';
 export default {
-    name: 'home'
+    name: 'home',
+    mounted(){
+        console.log(join(['1','2'], ','))
+    }
 }
 </script>
 

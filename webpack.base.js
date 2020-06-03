@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require("webpack-dashboard/plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack')
 
 //vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -71,6 +72,13 @@ module.exports = {
                 removeAttributeQuotes: false,
                 collapseWhitespace: false, 
             },
+        }),
+
+        new webpack.DllReferencePlugin({
+            manifest: require('./public/vendor/lodash.manifest.json')
+        }),
+        new webpack.DllReferencePlugin({
+            manifest: require('./public/vendor/vue.manifest.json')
         }),
 
         new DashboardPlugin(),

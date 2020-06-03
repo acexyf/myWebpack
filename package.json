@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config=webpack.prod.js",
+    "build:dll": "webpack --config=webpack.dll.js",
     "serve": "webpack-dashboard -- webpack-dev-server --config=webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -46,6 +47,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "lodash": "^4.17.15",
     "vue": "^2.6.11",
     "vue-router": "^3.3.2",
     "vue-template-compiler": "^2.6.11"
