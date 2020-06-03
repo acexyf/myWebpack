@@ -5,7 +5,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack')
 
-const prodConfig = smart(baseWebpackConfig, {
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+const prodConfig = smp.wrap(smart(baseWebpackConfig, {
     mode: 'production',
     plugins: [
         new OptimizeCSSAssetsPlugin(),
@@ -46,7 +49,7 @@ const prodConfig = smart(baseWebpackConfig, {
             exclude: /node_modules/
         }]
     }
-})
+}))
 
 
 module.exports = prodConfig

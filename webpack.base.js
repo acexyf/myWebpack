@@ -15,8 +15,8 @@ module.exports = {
     module: {
         rules: [{
             test: /\.jsx?$/,
-            use: ['babel-loader'],
-            exclude: /node_modules/
+            use: ['cache-loader', 'babel-loader'],
+            include: [path.resolve(__dirname, 'src')]
         },{
             test:  /\.(gif|png|jpg|svg)$/i,
             use: [{
@@ -30,6 +30,7 @@ module.exports = {
             test: /\.vue$/,
             //[vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.
             use: 'vue-loader',
+            include: [path.resolve(__dirname, 'src')]
         }]
     },
     plugins: [
