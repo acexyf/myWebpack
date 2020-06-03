@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require("webpack-dashboard/plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 //vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -32,6 +33,15 @@ module.exports = {
         }]
     },
     plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'public/js/*.js',
+                    to: path.resolve(__dirname, 'dist', 'js'),
+                    flatten: true,
+                }
+            ]
+        }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html', //打包后的文件名

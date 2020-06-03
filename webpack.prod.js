@@ -21,10 +21,7 @@ const prodConfig = smart(baseWebpackConfig, {
         rules: [{
             test: /\.css$/,
             use: [
-                {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {}
-                }, 
+                MiniCssExtractPlugin.loader,
                 'css-loader',
                 'postcss-loader',
             ],
