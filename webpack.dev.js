@@ -1,8 +1,8 @@
-const merge = require('webpack-merge');
+const { smart } = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base')
 const webpack = require('webpack')
 
-module.exports = merge(baseWebpackConfig, {
+module.exports = smart(baseWebpackConfig, {
     mode: 'development',
     module: {
         rules: [{

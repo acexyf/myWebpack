@@ -8,6 +8,20 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     entry: './src/main.js',
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    priority: 1,
+                    name: 'chunk-vendors',
+                    test: /node_modules/,
+                    chunks: 'initial',
+                    minSize: 0,
+                    minChunks: 1
+                },
+            }
+        }
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].[hash:8].js'
@@ -15,7 +29,7 @@ module.exports = {
     module: {
         rules: [{
             test: /\.jsx?$/,
-            use: ['cache-loader', 'babel-loader'],
+            use: ['thread-loader', 'cache-loader', 'babel-loader'],
             include: [path.resolve(__dirname, 'src')]
         },{
             test:  /\.(gif|png|jpg|svg)$/i,
