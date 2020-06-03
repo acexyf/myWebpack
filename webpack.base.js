@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var DashboardPlugin = require("webpack-dashboard/plugin");
 
 //vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -47,7 +48,9 @@ module.exports = {
             },
         }),
 
-        new VueLoaderPlugin()
+        new DashboardPlugin(),
+
+        new VueLoaderPlugin(),
 
     ]
 }
