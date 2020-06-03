@@ -12,13 +12,20 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 vendor: {
-                    priority: 1,
+                    priority: 10,
                     name: 'chunk-vendors',
-                    test: /node_modules/,
-                    chunks: 'initial',
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
                     minSize: 0,
                     minChunks: 1
                 },
+                common: {
+                    name: "common",
+                    test: /[\\/]src[\\/]/,
+                    minSize: 1024,
+                    chunks: "all",
+                    priority: 5
+                }
             }
         }
     },
