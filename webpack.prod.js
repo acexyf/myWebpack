@@ -14,7 +14,7 @@ const prodConfig = smart(baseWebpackConfig, {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash:8].css',
+            filename: 'css/[name].[hash:8].css',
         }),
     ],
     module: {
@@ -39,7 +39,7 @@ const prodConfig = smart(baseWebpackConfig, {
             ],
             exclude: /node_modules/
         },{
-            test: /\.scss$/,
+            test: /\.(sc|sa)ss$/,
             use: [
                 MiniCssExtractPlugin.loader, 
                 'css-loader',
