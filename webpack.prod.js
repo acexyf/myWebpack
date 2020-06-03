@@ -1,21 +1,21 @@
-const {smart } = require('webpack-merge');
+const { smart } = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-
+const webpack = require('webpack')
 
 const prodConfig = smart(baseWebpackConfig, {
     mode: 'production',
-    optimization: {
-        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    },
     plugins: [
+        new OptimizeCSSAssetsPlugin(),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash:8].css',
         }),
+        new webpack.DefinePlugin({
+            env: JSON.stringify('prod'),
+        })
     ],
     module: {
         rules: [{

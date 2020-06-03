@@ -1,6 +1,6 @@
 <template>
     <div class="home_box">
-        home
+        home1122223222333444
     </div>
 </template>
 <script>
