@@ -57,6 +57,12 @@ module.exports = {
         }]
     },
     plugins: [
+
+        new webpack.DllReferencePlugin({
+            context: path.join(__dirname),
+            manifest: require('./public/vendor/vendor.manifest.json')
+        }),
+
         new CopyWebpackPlugin({
             patterns: [
                 {
@@ -87,15 +93,9 @@ module.exports = {
 
         new AddAssetHtmlPlugin([
             {
-                filepath: require.resolve(path.resolve(__dirname, './public/vendor/vendor.dll.js')),
-                outputPath: 'vendor',
-                publicPath: 'vendor'
+                filepath: path.resolve(__dirname, './public/vendor/*.dll.js'),
             }
         ]),
-
-        new webpack.DllReferencePlugin({
-            manifest: require('./public/vendor/vendor.manifest.json')
-        }),
 
         new DashboardPlugin(),
 
