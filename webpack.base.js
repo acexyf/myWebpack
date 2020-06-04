@@ -68,16 +68,16 @@ module.exports = {
                     to: path.resolve(__dirname, 'dist', 'js'),
                     flatten: true,
                 },
-                // {
-                //     from: 'public/vendor/*.js',
-                //     to: path.resolve(__dirname, 'dist', 'vendor'),
-                //     flatten: true,
-                // },
-                // {
-                //     from: 'public/vendor/*.json',
-                //     to: path.resolve(__dirname, 'dist', 'vendor'),
-                //     flatten: true,
-                // }
+                {
+                    from: 'public/vendor/*.js',
+                    to: path.resolve(__dirname, 'dist', 'vendor'),
+                    flatten: true,
+                },
+                {
+                    from: 'public/vendor/*.json',
+                    to: path.resolve(__dirname, 'dist', 'vendor'),
+                    flatten: true,
+                }
             ]
         }),
         new HtmlWebpackPlugin({

@@ -10,6 +10,7 @@ const smp = new SpeedMeasurePlugin();
 
 const prodConfig = smp.wrap(smart(baseWebpackConfig, {
     mode: 'production',
+    devtool: 'hidden-source-map',
     plugins: [
         new OptimizeCSSAssetsPlugin(),
         new CleanWebpackPlugin(),
