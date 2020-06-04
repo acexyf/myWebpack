@@ -57,11 +57,9 @@ module.exports = {
         }]
     },
     plugins: [
+        new DashboardPlugin(),
 
-        new webpack.DllReferencePlugin({
-            context: path.join(__dirname),
-            manifest: require('./public/vendor/vendor.manifest.json')
-        }),
+        new VueLoaderPlugin(),
 
         new CopyWebpackPlugin({
             patterns: [
@@ -70,16 +68,16 @@ module.exports = {
                     to: path.resolve(__dirname, 'dist', 'js'),
                     flatten: true,
                 },
-                {
-                    from: 'public/vendor/*.js',
-                    to: path.resolve(__dirname, 'dist', 'vendor'),
-                    flatten: true,
-                },
-                {
-                    from: 'public/vendor/*.json',
-                    to: path.resolve(__dirname, 'dist', 'vendor'),
-                    flatten: true,
-                }
+                // {
+                //     from: 'public/vendor/*.js',
+                //     to: path.resolve(__dirname, 'dist', 'vendor'),
+                //     flatten: true,
+                // },
+                // {
+                //     from: 'public/vendor/*.json',
+                //     to: path.resolve(__dirname, 'dist', 'vendor'),
+                //     flatten: true,
+                // }
             ]
         }),
         new HtmlWebpackPlugin({
@@ -91,15 +89,19 @@ module.exports = {
             },
         }),
 
+        new webpack.DllReferencePlugin({
+            context: path.join(__dirname),
+            manifest: require('./public/vendor/vendor.manifest.json')
+        }),
+
         new AddAssetHtmlPlugin([
             {
-                filepath: path.resolve(__dirname, './public/vendor/*.dll.js'),
+                filepath: path.resolve(__dirname, 'public/vendor/vendor.dll.js'),
+                outputPath: 'vendor',
+                publicPath: 'vendor'
             }
         ]),
 
-        new DashboardPlugin(),
-
-        new VueLoaderPlugin(),
 
     ],
     // resolve: {
