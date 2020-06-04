@@ -12,9 +12,7 @@ const prodConfig = smp.wrap(smart(baseWebpackConfig, {
     mode: 'production',
     plugins: [
         new OptimizeCSSAssetsPlugin(),
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['!vendor', '']
-        }),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash:8].css',
         }),
@@ -52,7 +50,6 @@ const prodConfig = smp.wrap(smart(baseWebpackConfig, {
         }]
     }
 }))
-
 
 module.exports = prodConfig
 

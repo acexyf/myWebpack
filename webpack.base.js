@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require("webpack-dashboard/plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 //vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -12,14 +13,14 @@ module.exports = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                vendor: {
-                    priority: 10,
-                    name: 'chunk-vendors',
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
-                    minSize: 0,
-                    minChunks: 1
-                },
+                // vendor: {
+                //     priority: 10,
+                //     name: 'chunk-vendors',
+                //     test: /[\\/]node_modules[\\/]/,
+                //     chunks: 'all',
+                //     minSize: 0,
+                //     minChunks: 1
+                // },
                 common: {
                     name: "common",
                     test: /[\\/]src[\\/]/,
@@ -84,11 +85,16 @@ module.exports = {
             },
         }),
 
+        new AddAssetHtmlPlugin([
+            {
+                filepath: require.resolve(path.resolve(__dirname, './public/vendor/vendor.dll.js')),
+                outputPath: 'vendor',
+                publicPath: 'vendor'
+            }
+        ]),
+
         new webpack.DllReferencePlugin({
-            manifest: require('./public/vendor/lodash.manifest.json')
-        }),
-        new webpack.DllReferencePlugin({
-            manifest: require('./public/vendor/vue.manifest.json')
+            manifest: require('./public/vendor/vendor.manifest.json')
         }),
 
         new DashboardPlugin(),
@@ -96,9 +102,9 @@ module.exports = {
         new VueLoaderPlugin(),
 
     ],
-    resolve: {
-        alias: {
-            vue$: "vue/dist/vue.esm.js",
-        },
-    },
+    // resolve: {
+    //     alias: {
+    //         vue$: "vue/dist/vue.esm.js",
+    //     },
+    // },
 }

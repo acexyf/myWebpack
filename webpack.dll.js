@@ -6,8 +6,7 @@ const webpack = require('webpack');
 module.exports = {
     mode: 'production',
     entry: {
-        vue: ['vue'],
-        lodash: ['lodash']
+        vendor: ['vue', 'vue-router','lodash'],
     },
     output: {
         path: path.resolve(__dirname, 'public/vendor'),
