@@ -42,6 +42,8 @@ module.exports = smart(baseWebpackConfig, {
     ],
     devServer: {
         port: 8050,
-        hot: true
+        host: "0.0.0.0",
+        hot: true,
+        compress: true
     }
 })
